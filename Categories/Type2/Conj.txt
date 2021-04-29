@@ -1,0 +1,15 @@
+1-Naphthylisothiocyanate
+Allyl_Isothiocyanate
+Benzoyl_Isothiocyanate
+Amoscanate
+Carbonyl_Sulfide
+Ethyl_Isothiocyanate
+FITC
+Methyl_Isothiocyanate
+Nitroscanate
+Phenethyl_Isothiocyanate
+Phenyl_Isothiocyanate
+Tolrestat
+Trithiozine
+2-mercaptopyridine
+4-Mercaptopyridine
