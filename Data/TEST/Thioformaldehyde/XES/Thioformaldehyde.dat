@@ -1,0 +1,24 @@
+# ================================
+#  NWChem spectrum parser ver 2.1
+# ================================
+# 
+# Parser runtime options: {'verbose': False, 'datafmt': 'auto', 'header': True, 'delim': '    ', 'width': 0.1, 'makespec': False, 'units': 'ev', 'nbin': 20, 'npoints': 2000, 'cchar': '#'}
+#
+# The input appears to contain TDDFT data.
+# Successfully parsed 11 TDDFT singlet excitations
+# Roots not broadened
+# No spectrum generated: output is list of raw excitations
+#
+#  Energy [eV]         Abs. [au]   
+#----------------------------------
+2.4869484000e+03    6.3979271000e-03
+2.4844829000e+03    4.8065628000e-03
+2.4820805000e+03    3.8812366000e-03
+2.4793302000e+03    2.7385100000e-04
+2.4757757000e+03    1.2252900000e-05
+2.4703154000e+03    4.8918180000e-04
+2.3169005000e+03    8.9179399700e-02
+2.3168101000e+03    8.8859800700e-02
+2.3167440000e+03    8.9303585600e-02
+2.2666681000e+03    2.2690000000e-07
+2.2108724000e+03    1.0000000000e-10

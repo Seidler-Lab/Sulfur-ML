@@ -47,9 +47,9 @@ def linear_broaden_from_transitions(transitions, lorentz_ev_start=0.6, numpoints
     max_amp = np.max(y)
     
     # these are hardcoded for sulfur
-    xmin = 2465
-    xmax = 2515
-    padding = (xmax - xmin)*1 / 5
+    xmin = 2470
+    xmax = 2495
+    padding = 3
     x_eval = np.linspace(xmin - padding, xmax + padding, numpoints)
     
     spectrum = np.zeros_like(x_eval)
@@ -72,7 +72,7 @@ def linear_broaden_from_transitions(transitions, lorentz_ev_start=0.6, numpoints
     
     for e, a in zip(x, y):
 
-        if not ( (e > 2502 and a > max_amp/10) or e > 2505):
+        if not ( e > whiteline_E + 13 ):
             spectrum += a * Lorentzian(x_eval, e, lorentz_ev[index_from_energy(x_eval, e)]/2)
 
     if peaknorm:

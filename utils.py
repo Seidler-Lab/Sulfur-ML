@@ -112,7 +112,13 @@ def get_XANES(Types, TYPEdir):
             DATdir = f"Data/Type{t}/"
 
             Conj = get_text_in_file(f'{TYPEdir}Type{t}/Conj.txt')
-            NoConj = get_text_in_file(f'{TYPEdir}Type{t}/NoConj.txt') 
+            NoConj = get_text_in_file(f'{TYPEdir}Type{t}/NoConj.txt')
+
+            if os.path.exists(f'{TYPEdir}Type{t}/Mixed.txt'):
+                Mixed = get_text_in_file(f'{TYPEdir}Type{t}/Mixed.txt')
+                mixed = True
+            else:
+                mixed = False
 
             for line in file:
                 compound = line.replace('\n','')
@@ -124,9 +130,17 @@ def get_XANES(Types, TYPEdir):
                 
                 conj = get_conj(Conj, NoConj, compound)
 
+                if mixed:
+                    if compound in Mixed:
+                        mix = 1
+                    else:
+                        mix = 0
+                else:
+                    mix = -1
+
                 cat = get_category(t, conj)
                 temp_dict = {'name': compound, 'Type': t, 'XANES': spectrum_XANES, 'Transitions': np.flip(trans, axis=1),
-                            'oxy': get_oxy_from_type(t), 'conj':conj, 'category': cat}
+                            'oxy': get_oxy_from_type(t), 'conj':conj, 'category': cat, 'Mixed': mix}
                 Data.append(temp_dict)
                 print(f'{iterator}\r', end="")
                 iterator += 1
@@ -587,7 +601,8 @@ def show_loss(history, model):
     plt.show()
 
 
-def stack_plot(x, ys, names, title, space=1., figsize=(12,8), leg=2, fontsize=16, ncol=1, method=None):
+def stack_plot(x, ys, names, title, space=1., figsize=(12,8), leg=2, fontsize=16,
+               ncol=1, method=None, legend_font=None):
 
     n = len(ys)
     if n is 5 or n < 5:
@@ -601,7 +616,7 @@ def stack_plot(x, ys, names, title, space=1., figsize=(12,8), leg=2, fontsize=16
     for i in range(n):
         plt.plot(x, ys[i] + ymax - i*space, '-', c=Colors[i], label=names[i])
 
-    plt.title(f"{title}", fontsize=20)
+    plt.title(f"{title}", fontsize=24)
     plt.xlabel('Energy (eV)', fontsize=fontsize+4)
     # plt.ylabel('Intensity (arb. units)', fontsize=16)
 
@@ -610,12 +625,15 @@ def stack_plot(x, ys, names, title, space=1., figsize=(12,8), leg=2, fontsize=16
     elif method == 'XES':
         plt.xticks([2450,2455,2460,2465,2470,2475], [2450,'',2460,'',2470,''], fontsize=26)
     elif method == 'XANES':
-        plt.xticks([2465,2470,2475,2480,2485,2490,2495,2500,2505], [2465,'','',2480,'','',2495,'',''], fontsize=26)
+    	plt.xticks([2470,2475,2480,2485,2490,2495], [2470,'',2480,'',2490,''], fontsize=26)
     plt.yticks([],fontsize=fontsize)
     ax.tick_params(direction='in', width=2, length=8)
 
+
+    if legend_font is None:
+        legend_font = fontsize+2
     if leg != 0:
-        plt.legend(fontsize=fontsize+2, loc=leg, ncol=ncol)
+        plt.legend(fontsize=legend_font, loc=leg, ncol=ncol)
     plt.show()
 
 
@@ -732,7 +750,7 @@ def plot_in_v_out(energy, vae, x_predict, test_names,
     elif method == 'XES':
     	plt.xticks([2450,2455,2460,2465,2470,2475], [2450,'',2460,'',2470,''], fontsize=24)
     elif method == 'XANES':
-    	plt.xticks([2470,2480,2490,2500,2510], [2470,'',2490,'',2510], fontsize=24)
+    	plt.xticks([2470,2475,2480,2485,2490,2495], [2470,'',2480,'',2490,''], fontsize=24)
     plt.yticks([],fontsize=14)
     ax.tick_params(direction='in', width=2, length=8)
 
@@ -760,7 +778,7 @@ def type_spagetti(energy, names, Data, mode, X, Type=3, space=0, figsize=(8, 6),
     Colors[8] = '#ac3501'
     Colors[9] = COLORS[4]
     
-    mn, mx = 120, -200
+    mn, mx = 10, -200
     
     Aro = np.zeros_like(energy)
     n_aro = 0
@@ -792,20 +810,20 @@ def type_spagetti(energy, names, Data, mode, X, Type=3, space=0, figsize=(8, 6),
     aro = mpatches.Patch(color=Colors[base+1], label=f'Aromatic')
     title = mpatches.Patch(color='w', label='XANES')
     
-    legend = ax.legend(handles=[title, aro, ali], fancybox=True, fontsize=24)
+    legend = ax.legend(handles=[title, aro, ali], fancybox=True, fontsize=20)
     plt.title(f"Type {Type}", fontsize=24)
     plt.show()
     
     # Residual
     fig, ax = plt.subplots(figsize=figsize)
     
-    Aro_avg = Aro/n_aro
-    plt.plot(energy[mn:mx], Aro_avg[mn:mx], '-', c=Colors[base+1], linewidth=3)
     Ali_avg = Ali/n_ali
-    plt.plot(energy[mn:mx], Ali_avg[mn:mx], '-', c=Colors[base], linewidth=3)
+    plt.plot(energy[mn:mx], Ali_avg[mn:mx], '-', c=Colors[base], linewidth=4)
+    Aro_avg = Aro/n_aro
+    plt.plot(energy[mn:mx], Aro_avg[mn:mx], '-', c=Colors[base+1], linewidth=4)
     
     Residual = Aro_avg - Ali_avg
-    plt.plot(energy[mn:mx], Residual[mn:mx], '-', c='k', linewidth=3)
+    plt.plot(energy[mn:mx], Residual[mn:mx], '-', c='k', linewidth=3, alpha=0.8)
     
     plt.xlabel('Energy (eV)', fontsize=22)
     plt.xticks(fontsize=20)
@@ -817,12 +835,12 @@ def type_spagetti(energy, names, Data, mode, X, Type=3, space=0, figsize=(8, 6),
     res = mpatches.Patch(linestyle='-', color='k', label=f'Residual')
     title = mpatches.Patch(color='w', label=mode)
     
-    legend = ax.legend(handles=[title, aro, ali, res], fancybox=True, fontsize=24)
+    legend = ax.legend(handles=[title, aro, ali, res], fancybox=True, fontsize=20)
     plt.title(f"Type {Type}", fontsize=24)
     plt.show()
 
 
-def bar_chart(Acc, Becnhmarks, mode):
+def bar_chart(Acc, Benchmarks, mode):
     x = ['VAE', 'PCA', 'FastICA', 'FA', 'NMF', 't-SNE']
     labels=['Oxidation','Type','Aromaticity']
 
@@ -859,7 +877,7 @@ def bar_chart(Acc, Becnhmarks, mode):
 
     ax2.set_yticks([0])
 
-    ax1.set_ylim(40.1, 100.5)
+    ax1.set_ylim(45, 100.5)
     ax2.set_ylim(0, 1) 
 
     ax1.axes.xaxis.set_visible(False)
