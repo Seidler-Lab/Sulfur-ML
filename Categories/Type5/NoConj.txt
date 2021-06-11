@@ -14,6 +14,7 @@ Apricitabine-sulfone
 Baricitinib
 Bensulfuron-methyl
 Benzyl_sulfone
+Butadiene_sulfone
 Butyl_sulfone
 Butylate-sulfone
 Carbocysteine-sulfone
