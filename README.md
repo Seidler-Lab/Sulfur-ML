@@ -46,9 +46,9 @@ In merely two dimensions, t-SNE generated a representation with clustering of ch
 
 
 ## Requirements
-This analysis requires installation of
+This analysis requires installation of the python packages
 
 1. ```scikit-learn```. See <https://scikit-learn.org/stable/install.html>.
-2. ```tensorflow```. See <https://www.tensorflow.org/install>
+2. ```tensorflow```. See <https://www.tensorflow.org/install>.
 
-Although this work uses the package ```Keras```, newer versions of ```tensorflow``` include ```Keras``` as ```tf.keras```.
+Although this work also uses the package ```Keras```, newer versions of ```tensorflow``` include ```Keras``` as ```tf.keras```.
