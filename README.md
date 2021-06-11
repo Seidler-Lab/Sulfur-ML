@@ -1,5 +1,7 @@
 # Sulfur-ML
 
+[![DOI](https://zenodo.org/badge/362850133.svg)](https://zenodo.org/badge/latestdoi/362850133)
+
 This repo contains the analysis of the **Valence-to-Core X-ray Emission Spectra (VtC-XES)** and **X-ray Absoprtion Near Edge Structure (XANES)** of about 800 sulforganic compounds.
 
 <p align="center">
