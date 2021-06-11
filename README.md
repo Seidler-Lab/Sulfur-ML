@@ -21,7 +21,7 @@ b. variational autoencoder (VAE)
 c. t-distributed stochastic neighbor embedding (t-SNE)
 
 <p align="center">
-	<img src="docs/PCA_vs_VAE_vs_TSNE.svg" alt="drawing" width="800"/>
+	<img src="docs/PCA_vs_VAE_vs_TSNE.svg" alt="drawing" width="700"/>
 </p>
 
 (a) PCA generates a linear mapping. It is a linear dimensionality reduction algorithm because the principal components create an orthogonal basis. (b) However, the VAE is a nonlinear mapping that iteratively learns how to maximize information in the latent space, or information bottleneck layer. (c) On the other hand, t-SNE is a nonlinear embedding, so it requires the entire dataset every time a lower-dimensional representation is created.
