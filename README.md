@@ -6,9 +6,11 @@ This repo contains the analysis of the **Valence-to-Core X-ray Emission Spectra 
 	<img src="docs/TOC.svg" alt="drawing" width="250"/>
 </p>
 
+
 ### The dataset
 The compounds in this dataset includes sulforganic compounds in the following classes:
 ![dimension_reduction_overview](docs/types.svg)
+
 
 
 ### The unsupervised machine learning algorithms include
@@ -27,9 +29,12 @@ PCA generates a linear mapping and is thus a linear dimensionality reduction alg
 ### Results
 In merely two dimensions, t-SNE generated a representation with clustering of chemically-related compounds with fine detail.
 
-![dimension_reduction_overview](docs/xanes_tsne_subclusters.png)
+<p align="center">
+	<img src="docs/xanes_tsne_subclusters.png" alt="drawing" width="500"/>
+</p>
 
 (a) Separation of Type 1 aromatic compounds based on inclusion of chlorine or bromine in the aromatic system, versus thiazoles, which contain nitrogen in their rings. (b) Separation of Type 5 aliphatic copmounds based on bond strain via the inlcusion of sulfur in a ring versus a chain. (c) Type 4 compounds with one R group aromatic and the other aliphatic share characteristics of both classes and thus form the bridge between the two custers.
+
 
 
 ### Structure
