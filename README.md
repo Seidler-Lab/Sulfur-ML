@@ -43,3 +43,12 @@ In merely two dimensions, t-SNE generated a representation with clustering of ch
 3. The transitions calculated by NWChem (that are used to generate the spectra) are saved in ```Data/```.
 4. The file that parses the NWChem data files into spectra is ```tddftoutputparser.py``` and is callled in the Jupyter notebook ```Process_Dat_to_Spectra.ipynb```, which contains the broadening values used in this study.
 5. Many helper functions and visualizations are included in ```utils.py```.
+
+
+## Requirements
+This analysis requires installation of
+
+1. ```scikit-learn```. See <https://scikit-learn.org/stable/install.html>.
+2. ```tensorflow```. See <https://www.tensorflow.org/install>
+
+Although this work uses the package ```Keras```, newer versions of ```tensorflow``` include ```Keras``` as ```tf.keras```.
