@@ -4,6 +4,12 @@
 
 This repo contains the analysis of the **Valence-to-Core X-ray Emission Spectra (VtC-XES)** and **X-ray Absoprtion Near Edge Structure (XANES)** of about 800 sulforganic compounds.
 
+This research appeared in the following:
+
+[*PCCP*, doi:10.1039/D1CP02903G](https://doi.org/10.1039/D1CP02903G)
+
+[ChemRxiv](https://chemrxiv.org/engage/chemrxiv/article-details/60cbb47ffca4902445c7ac4b)
+
 <p align="center">
 	<img src="docs/TOC.svg" alt="drawing" width="250"/>
 </p>
